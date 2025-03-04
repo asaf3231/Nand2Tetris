@@ -1,0 +1,306 @@
+function AlienManager.new 0
+    push constant 7
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 4
+    push this 4
+    call Array.new 1
+    pop this 0
+    push constant 0
+    pop this 1
+    push argument 1
+    pop argument 1
+    push argument 2
+    pop argument 2
+    push constant 0
+    pop this 5
+    push constant 0
+    pop this 6
+    push pointer 0
+    return
+function AlienManager.addAlien 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push this 4
+    lt
+    not
+    if-goto AlienManager_1
+    push this 1
+    push this 0
+    add
+    push argument 1
+    push argument 2
+    call Alien.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push this 1
+    push constant 1
+    add
+    pop this 1
+    goto AlienManager_0
+label AlienManager_1
+label AlienManager_0
+    push constant 0
+    return
+function AlienManager.drawAll 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_2
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_3
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push local 1
+    call Alien.getX 1
+    push local 1
+    call Alien.getY 1
+    call Alien.draw 3
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_2
+label AlienManager_3
+    push constant 0
+    return
+function AlienManager.checkHit 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_4
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_5
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Alien.getIsAlive 1
+    push local 1
+    push argument 1
+    push argument 2
+    call Alien.isHit 3
+    and
+    not
+    if-goto AlienManager_7
+    push local 1
+    push local 1
+    call Alien.getX 1
+    push local 1
+    call Alien.getY 1
+    call Alien.erase 3
+    pop temp 0
+    push local 1
+    call Alien.destroy2 1
+    pop temp 0
+    push local 1
+    call Memory.deAlloc 1
+    pop temp 0
+    push this 5
+    push constant 1
+    add
+    pop this 5
+    push this 6
+    push constant 10
+    add
+    pop this 6
+    goto AlienManager_6
+label AlienManager_7
+label AlienManager_6
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_4
+label AlienManager_5
+    push constant 0
+    return
+function AlienManager.checkHitShip 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_8
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_9
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Alien.getIsAlive 1
+    push local 1
+    push argument 1
+    push argument 2
+    call Alien.isHit 3
+    and
+    not
+    if-goto AlienManager_11
+    push constant 1
+    neg
+    return
+    goto AlienManager_10
+label AlienManager_11
+label AlienManager_10
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_8
+label AlienManager_9
+    push constant 0
+    return
+function AlienManager.endGame 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    push constant 0
+    eq
+    not
+    if-goto AlienManager_13
+    push constant 1
+    neg
+    return
+    goto AlienManager_12
+label AlienManager_13
+    push constant 0
+    return
+label AlienManager_12
+function AlienManager.alienGoDown 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_14
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_15
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Alien.getIsAlive 1
+    not
+    if-goto AlienManager_17
+    push local 1
+    push local 1
+    call Alien.getX 1
+    push local 1
+    call Alien.getY 1
+    call Alien.erase 3
+    pop temp 0
+    push local 1
+    push local 1
+    call Alien.getY 1
+    push argument 1
+    add
+    call Alien.setY 2
+    pop temp 0
+    push local 1
+    push local 1
+    call Alien.getX 1
+    push local 1
+    call Alien.getY 1
+    call Alien.draw 3
+    pop temp 0
+    goto AlienManager_16
+label AlienManager_17
+label AlienManager_16
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_14
+label AlienManager_15
+    push constant 0
+    return
+function AlienManager.lost 2
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 0
+label AlienManager_18
+    push local 0
+    push this 1
+    lt
+    not
+    if-goto AlienManager_19
+    push local 0
+    push this 0
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    call Alien.getY 1
+    push constant 208
+    eq
+    not
+    if-goto AlienManager_21
+    push constant 1
+    neg
+    return
+    goto AlienManager_20
+label AlienManager_21
+label AlienManager_20
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto AlienManager_18
+label AlienManager_19
+    push constant 0
+    return
+function AlienManager.getScore 0
+    push argument 0
+    pop pointer 0
+    push this 6
+    return
+function AlienManager.getAlienCount 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function AlienManager.clearAliens 0
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop this 1
+    push constant 0
+    return
+function AlienManager.gethowManyDead 0
+    push argument 0
+    pop pointer 0
+    push this 5
+    return
